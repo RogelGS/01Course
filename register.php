@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, user-scale=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Practica 01</title>
 
     <link rel="icon" href="images/logo.png">
@@ -27,7 +27,7 @@
                     <a href="#" data-target="nav-mobile" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="sass.html">Articulos</a></li>
-                        <li><a href="#" class="waves-effect waves-light btn blue">Registro</a></li>
+                        <li><a href="#" class="waves-effect waves-light btn red">Registro</a></li>
                     </ul>
                 </div>
             </div>
@@ -35,7 +35,7 @@
 
         <ul class="sidenav" id="nav-mobile">
             <li><a href="sass.html">Articulos</a></li>
-            <li><a href="#" class="waves-effect waves-light btn blue">Registro</a></li>
+            <li><a href="#" class="waves-effect waves-light btn red">Registro</a></li>
         </ul>
     </header>
 
@@ -50,27 +50,27 @@
                             <div class="row">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">account_circle</i>
-                                    <input id="icon_prefix" type="text" id="username" class="validate">
+                                    <input type="text" id="username" class="validate">
                                     <label for="icon_prefix">Usuario</label>
                                 </div>
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">email</i>
-                                    <input id="icon_prefix" type="email" id="email" class="validate">
+                                    <input type="email" id="email" class="validate">
                                     <label for="icon_prefix">Email</label>
                                 </div>
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">vpn_key</i>
-                                    <input id="icon_prefix" type="password" id="password" class="validate">
+                                    <input type="password" id="password" class="validate">
                                     <label for="icon_prefix">Contraseña</label>
                                 </div>
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">vpn_key</i>
-                                    <input id="icon_prefix" type="password" id="verification" class="validate">
+                                    <input type="password" id="verification" class="validate">
                                     <label for="icon_prefix">Verificar contraseña</label>
                                 </div>
                                 <div class="col s12">
                                     <div class="center">
-                                        <input type="submit" class="waves-effect waves-light btn blue" value="registro">
+                                        <button type="submit" class="waves-effect waves-light btn blue" onclick="register()">Registrarme</button>
                                     </div>
                                 </div>
                             </div>
@@ -91,5 +91,6 @@
 
     <div class="scrolltop scrolltop-dark"></div>
     <script src="js/app.js"></script>
+    <script src="js/ajax.js"></script>
 </body>
 </html>

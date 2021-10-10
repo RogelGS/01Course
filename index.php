@@ -27,7 +27,7 @@
                     <a href="#" data-target="nav-mobile" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="sass.html">Articulos</a></li>
-                        <li><a href="#" class="waves-effect waves-light btn blue">Registro</a></li>
+                        <li><a href="#" class="waves-effect waves-light btn red">Registro</a></li>
                     </ul>
                 </div>
             </div>
@@ -35,7 +35,7 @@
 
         <ul class="sidenav" id="nav-mobile">
             <li><a href="sass.html">Articulos</a></li>
-            <li><a href="#" class="waves-effect waves-light btn blue">Registro</a></li>
+            <li><a href="#" class="waves-effect waves-light btn red">Registro</a></li>
         </ul>
     </header>
 
@@ -49,7 +49,7 @@
                         Bienvenido al sistema de usuarios
                     </h2>
                     <p>Para ingresar al sistema debes de estar registrado!</p>
-                    <a href="#" class="waves-effect waves-light btn blue">Registro</a>
+                    <a href="#" class="waves-effect waves-light btn red">Registro</a>
                 </div>
             </div>
         </div>
