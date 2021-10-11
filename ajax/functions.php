@@ -29,4 +29,6 @@
         }
         return $theValue;
     }
+
+    define('url', 'http://localhost/01Course/');
 ?>

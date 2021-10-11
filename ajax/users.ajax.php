@@ -43,6 +43,20 @@
                     $stmt->bind_param("ssssssis", $username, $email, $password, $description, $profile, $banner, $status, $token);
     
                     if($stmt->execute()) {
+                        // Envio de correo de verificación
+                        $to = $email;
+                        $title = "Verifique su correo electronico";
+                        $message = "Utilice este enlace " . url . "verification.php?auth=" . $token . " Para verificar su cuenta";
+
+                        // Para enviar un correo HTML, debe establecerse la cabecera Content-type
+                        $head  = 'MIME-Version: 1.0' . "\r\n";
+                        $head .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+                        // Cabeceras adicionales
+                        $head .= 'From: 01 Course <01course@gmail.com>' . "\r\n";
+
+                        // Enviarlo
+                        mail($to, $title, $message, $head);
                         echo 'OK';
                     } else {
                         echo 'ERROR';
