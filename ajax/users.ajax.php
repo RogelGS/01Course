@@ -22,21 +22,44 @@
 
             $username = $_POST['username'];
             $email = $_POST['email'];
-            $password = $_POST['password'];
+            $password = md5($_POST['password']);
             $description = '';
             $profile = '';
             $banner = '';
             $status = 0;
             $token = md5($email);
             
-            $stmt = $connection->prepare("INSERT INTO users(username, email, password, description, profile, banner, status, token) VALUES(?,?,?,?,?,?,?,?)");
-            $stmt->bind_param("ssssssis", $username, $email, $password, $description, $profile, $banner, $status, $token);
+            $consult = sprintf("SELECT * FROM users WHERE username = %s", clean($username, "text"));
+            $result = mysqli_query($connection, $consult);
+            $row_cnt = mysqli_num_rows($result);
+            
+            if($row_cnt === 0) {
+                $consultEmail = sprintf("SELECT * FROM users WHERE email = %s", clean($email, "text"));
+                $resultEmail = mysqli_query($connection, $consultEmail);
+                $row_cntEmail = mysqli_num_rows($resultEmail);
 
-            if($stmt->execute()) {
-                echo 'OK';
+                if($row_cntEmail === 0) {
+                    $stmt = $connection->prepare("INSERT INTO users(username, email, password, description, profile, banner, status, token) VALUES(?,?,?,?,?,?,?,?)");
+                    $stmt->bind_param("ssssssis", $username, $email, $password, $description, $profile, $banner, $status, $token);
+    
+                    if($stmt->execute()) {
+                        echo 'OK';
+                    } else {
+                        echo 'ERROR';
+                    }
+                    
+                    $stmt->close();
+                } else {
+                    echo 'email_exist';
+                }
+                
+
+                mysqli_free_result($resultEmail);
             } else {
-                echo 'ERROR';
+                echo 'user_exist';
             }
+
+            mysqli_free_result($result);
         }
     }
 ?>

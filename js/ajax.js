@@ -10,24 +10,31 @@ register = () => {
 
     if(username === '') {
         M.toast({html: 'El campo usuario no puede estar vacio!'});
+        return;
     } else if(!textValidator.exec(username)) {
         M.toast({html: 'No se permiten caracteres especiales ni espacios en el campo usuario!'});
+        return;
     }
 
     if(email === '') {
         M.toast({html: 'El campo email no puede estar vacio!'});
+        return;
     } else if(!emailValidator.exec(email)) {
         M.toast({html: 'Por favor, ingrese un correo electronico válido!'});
+        return;
     }
     
     if(password === '' || verification === '') {
         M.toast({html: 'El campo contraseña no puede estar vacio!'});
+        return;
     } else if(!textValidator.exec(password) || !textValidator.exec(verification)) {
         M.toast({html: 'No se permiten caracteres especiales ni espacios en el campo contraseña!'});
+        return;
     }
 
     if(password !== verification) {
         M.toast({html: 'Las contraseñas no coinciden.'});
+        return;
     }
 
     var ajax = new XMLHttpRequest();
@@ -46,6 +53,13 @@ register = () => {
                 M.toast({html: 'La contraseña enviado no es valido!'});
             } else if(response === 'fields_empty') {
                 M.toast({html: 'Algunos campos estan vacios!'});
+            } else if(response === 'OK') {
+                M.toast({html: `Los datos se han guardado correctamente! Por favor verifique correo electronico ${email} para ingresar`});
+                document.getElementById('form').reset();
+            } else if(response === 'user_exist') {
+                M.toast({html: 'El usuario ya se encuentra registrado, intente con uno diferente!'});
+            } else if(response === 'email_exist') {
+                M.toast({html: 'El email ya se encuentra registrado, intente con uno diferente!'});
             }
         }
     }
