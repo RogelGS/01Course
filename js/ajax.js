@@ -34,8 +34,19 @@ register = () => {
     var URL = 'ajax/users.ajax.php';
     var method = 'POST';
     ajax.onreadystatechange = () => {
-        if(ajax.readyState === 4 && ajax.status === 2001) {
+        if(ajax.readyState === 4 && ajax.status === 200) {
             var response = ajax.responseText;
+
+            console.log(response);
+            if(response === 'email_invalid') {
+                M.toast({html: 'El email enviado no es valido!'});
+            } else if(response === 'username_invalid') {
+                M.toast({html: 'El usuario enviado no es valido!'});
+            } else if(response === 'password_invalid') {
+                M.toast({html: 'La contraseña enviado no es valido!'});
+            } else if(response === 'fields_empty') {
+                M.toast({html: 'Algunos campos estan vacios!'});
+            }
         }
     }
     ajax.open(method, URL, true);
