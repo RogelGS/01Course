@@ -46,7 +46,7 @@
                         // Envio de correo de verificación
                         $to = $email;
                         $title = "Verifique su correo electronico";
-                        $message = "Utilice este enlace " . url . "verification.php?auth=" . $token . " Para verificar su cuenta";
+                        $message = "Utilice este enlace " . url . "verification.php?token=" . $token . " Para verificar su cuenta";
 
                         // Para enviar un correo HTML, debe establecerse la cabecera Content-type
                         $head  = 'MIME-Version: 1.0' . "\r\n";
