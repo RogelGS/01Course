@@ -46,7 +46,7 @@
                         // Envio de correo de verificación
                         $to = $email;
                         $title = "Verifique su correo electronico";
-                        $message = "Utilice este enlace " . url . "verification.php?token=" . $token . " Para verificar su cuenta";
+                        $message = "Utilice este enlace " . url . "verification/" . $token . " Para verificar su cuenta";
 
                         // Para enviar un correo HTML, debe establecerse la cabecera Content-type
                         $head  = 'MIME-Version: 1.0' . "\r\n";
@@ -74,6 +74,43 @@
             }
 
             mysqli_free_result($result);
+        }
+    }
+
+    if(isset($_POST['status']) && isset($_POST['username']) && isset($_POST['password'])) {
+
+        if($_POST['username'] === '' || $_POST['password'] == '') {
+            echo 'fields_empty';
+            exit();
+        } else {
+
+            if(!preg_match('/^([a-zA-Z0-9\\@\\.\\_])+$/', $_POST['username'])) {
+                echo 'username_invalid';
+                exit();
+            } else if(!preg_match('/^([a-zA-Z0-9])+$/', $_POST['password'])) {
+                echo 'password_invalid';
+                exit();
+            }
+
+            $username = $_POST['username'];
+            $password = md5($_POST['password']);
+
+            $consult = sprintf("SELECT * FROM users WHERE username = %s AND password = %s AND status = 1 OR email = %s AND password = %s AND status = 1", clean($username, "text"), clean($password, "text"), clean($username, "text"), clean($password, "text"));
+            $result = mysqli_query($connection, $consult);
+            $fetch = mysqli_fetch_assoc($result);
+            $row_cnt = mysqli_num_rows($result);
+
+            if($row_cnt === 1) {
+                $_SESSION['id'] = $fetch['id'];
+                $_SESSION['username'] = $fetch['username'];
+
+                echo 'login';
+            } else {
+                echo 'No_exist';
+            }
+
+            mysqli_free_result($result);
+            
         }
     }
 ?>

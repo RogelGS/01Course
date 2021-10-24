@@ -10,7 +10,7 @@
                         Bienvenido al sistema de usuarios
                     </h2>
                     <p>Para ingresar al sistema debes de estar registrado!</p>
-                    <a href="#" class="waves-effect waves-light btn red">Registro</a>
+                    <a href="<?php echo url ?>register" class="waves-effect waves-light btn red">Registro</a>
                 </div>
             </div>
         </div>

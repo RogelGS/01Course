@@ -1,0 +1,16 @@
+RewriteEngine on
+
+# Maneji de errores
+ErrorDocument 401 /error
+ErrorDocument 403 /error
+ErrorDocument 404 /error
+ErrorDocument 500 /error
+
+RewriteRule ^error error.php
+RewriteRule ^register register.php
+RewriteRule ^login login.php
+RewriteRule ^profile profile.php
+RewriteRule ^articles articles.php
+RewriteRule ^home index.php
+RewriteRule ^left left.php
+RewriteRule ^verification/(.+) verification.php?token=$1

@@ -34,6 +34,11 @@
                                         <button type="submit" class="waves-effect waves-light btn blue" onclick="register()">Registrarme</button>
                                     </div>
                                 </div>
+                                <div class="col s12">
+                                    <div class="center">
+                                        <a href="<?php echo url ?>login" class="black-text">Ya tengo cuenta</a>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>

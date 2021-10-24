@@ -7,7 +7,7 @@
             <div class="container">
                 <div class="container-form">
                     <div class="card">
-                        <form onsubmit="return false">
+                        <form onsubmit="return false" id="form">
                             <div class="row">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">account_circle</i>
@@ -21,7 +21,7 @@
                                 </div>
                                 <div class="col s12">
                                     <div class="center">
-                                        <input type="submit" class="waves-effect waves-light btn blue" value="Ingresar">
+                                        <input type="submit" class="waves-effect waves-light btn blue" onclick="login()" value="Ingresar">
                                     </div>
                                 </div>
                             </div>

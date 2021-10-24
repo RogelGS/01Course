@@ -1,16 +1,35 @@
-<?php include 'header.php'; ?>
+<?php 
+
+    include 'header.php'; 
+
+    $id = $_SESSION['id'];
+
+    $consult = sprintf("SELECT * FROM users WHERE id = %s", clean($id, "int"));
+    $result = mysqli_query($connection, $consult);
+    $fetch = mysqli_fetch_assoc($result);
+?>
 
     <!-- Profile -->
     <main role="main" class="user-profile">
         <div class="parallax-container profile">
             <div class="parallax">
-                <img src="images/hero.jpg">
+                <?php if($fetch['banner'] === ''): ?>
+                    <img src="images/hero.jpg">
+                <?php else: ?>
+                    <img src="<?php echo url . 'images/banners/' . $fetch['banner']; ?>">
+                <?php endif; ?>
             </div>
             <div class="content-paralax center">
                 <figure>
-                    <img src="images/person.png" width="100" class="circle-img">
+                    <?php if($fetch['profile'] === ''): ?>
+                        <img src="images/person.png" width="100" class="circle-img">
+                    <?php else: ?>
+                        <img src="<?php echo url . 'images/users/' . $fetch['profile']; ?>" width="100" class="circle-img">
+                    <?php endif; ?>
                 </figure>
-                <h2 class="name-user">John Doe</h2>
+                <h2 class="name-user">
+                    <?php echo $fetch['username'] ?>
+                </h2>
             </div>
         </div>
 
@@ -18,7 +37,7 @@
             <article class="center">
                 <h3>Sobre mi</h3>
                 <figcaption>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus quos, sapiente enim mollitia eaque facilis expedita explicabo laboriosam commodi vel aut ut quasi, repellendus, alias fugit nulla consequatur? Voluptate, ratione?
+                    <?php echo $fetch['description'] ?>
                 </figcaption>
             </article>
             <div class="article-post-user-profile">
@@ -115,4 +134,9 @@
         </div>
     </main>
 
-    <?php include 'footer.php'; ?>
+    <?php 
+    
+        include 'footer.php'; 
+    
+        mysqli_free_result($result);
+    ?>
